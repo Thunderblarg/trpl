@@ -11,7 +11,14 @@ fn main() {
 
     // let absent_number: Option<i32> = Option::None;
 
-    value_in_cents(Coin::Quarter(UsState::Alabama));
+    // value_in_cents(Coin::Quarter(UsState::Alabama));
+
+    let mut count: u8 = 0;
+    println!("I have {} state quarters", count);
+    println!("value_in_cents is {}",
+              value_in_cents(Coin::Quarter(UsState::Alabama), &count));
+    count = value_in_cents(Coin::Quarter(UsState::Alabama), &count);
+    println!("I now have {} state quarters", count);
 
 }
 
@@ -19,7 +26,7 @@ fn main() {
 enum UsState {
     Alabama,
     Alaska,
-    Some_others
+    SomeOthers
 }
 
 enum Coin {
@@ -29,19 +36,27 @@ enum Coin {
     Quarter(UsState)
 }
 
-fn value_in_cents(coin: Coin) -> u8 {
-    match coin {
-        Coin::Penny => {
-            println!("Lucky penny!");
-            1
-        },
-        Coin::Nickel => 5,
-        Coin::Dime => 10,
-        Coin::Quarter(state) => {
-            println!("State quarter from {:?}!", state);
-            25
-        }
-    }
+fn value_in_cents(coin: Coin, mut count: &u8) -> u8 {
+    // match coin {
+    //     Coin::Penny => {
+    //         println!("Lucky penny!");
+    //         1
+    //     },
+    //     Coin::Nickel => 5,
+    //     Coin::Dime => 10,
+    //     Coin::Quarter(state) => {
+    //         println!("State quarter from {:?}!", state);
+    //         25
+    //     }
+    // }
+    
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } // else {
+    //     return count + 1
+    // }
+
+    *count + 1
 }
 
 fn plus_one(x: Option<i32>) -> Option<i32> {
