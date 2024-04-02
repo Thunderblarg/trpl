@@ -1,27 +1,35 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
+mod front_of_house; 
 
-        fn seat_at_table() {}
-    }
+pub use crate::front_of_house::hosting;
 
-    mod serving {
-        fn take_order() {}
-
-        fn serve_order() {}
-
-        fn take_payment() {}
-    }
-
-    pub fn eat_at_restaurant() {
-        crate::front_of_house::hosting::add_to_waitlist();
-
-        // TODO: Hit the trpl discord and see why the book says to use
-        // front_of_house::hosting::add_to_waitlist instead of how I have it
-        // below, as it's not compiling for me as-is in the book
-        hosting::add_to_waitlist();
-    }
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
 }
+
+// {
+//     pub mod hosting {
+//         pub fn add_to_waitlist() {}
+
+//         fn seat_at_table() {}
+//     }
+
+//     mod serving {
+//         fn take_order() {}
+
+//         fn serve_order() {}
+
+//         fn take_payment() {}
+//     }
+
+//     pub fn eat_at_restaurant() {
+//         crate::front_of_house::hosting::add_to_waitlist();
+
+//         // TODO: Hit the trpl discord and see why the book says to use
+//         // front_of_house::hosting::add_to_waitlist instead of how I have it
+//         // below, as it's not compiling for me as-is in the book
+//         hosting::add_to_waitlist();
+//     }
+// }
 
 mod back_of_house {
     pub enum Appetizer {
@@ -52,25 +60,30 @@ mod back_of_house {
 }
 
 
-pub fn eat_at_restaurant() {
+// pub fn eat_at_restaurant() {
     
     
-    let mut meal = back_of_house::Breakfast::summer("Rye");
-    meal.toast = String::from("Wheat");
-    println!("I'd like {} toast please", meal.toast);
+//     let mut meal = back_of_house::Breakfast::summer("Rye");
+//     meal.toast = String::from("Wheat");
+//     println!("I'd like {} toast please", meal.toast);
     
-    let order1 = back_of_house::Appetizer::Soup;
-    let order2 = back_of_house::Appetizer::Salad;
-}
+//     let order1 = back_of_house::Appetizer::Soup;
+//     let order2 = back_of_house::Appetizer::Salad;
+// }
 
+use crate::front_of_house::hosting::add_to_waitlist;
 
-mod customer {
-    use crate::front_of_house::hosting;
+// pub fn eat_at_restaurant() {
+//     hosting::add_to_waitlist();
+// }
+
+// mod customer {
+//     use crate::front_of_house::hosting;
     
-    pub fn eat_at_restaurant() {
-        hosting::add_to_waitlist();
-    }
-}
+//     pub fn eat_at_restaurant() {
+//         hosting::add_to_waitlist();
+//     }
+// }
 
 fn deliver_order() {}
 // pub fn add(left: usize, right: usize) -> usize {

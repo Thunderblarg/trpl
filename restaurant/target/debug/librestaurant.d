@@ -1,1 +1,1 @@
-C:\Users\jalva12x\Documents\repos\trpl\restaurant\target\debug\librestaurant.rlib: C:\Users\jalva12x\Documents\repos\trpl\restaurant\src\lib.rs
+C:\Users\jalva12x\Documents\repos\trpl\restaurant\target\debug\librestaurant.rlib: C:\Users\jalva12x\Documents\repos\trpl\restaurant\src\front_of_house\hosting.rs C:\Users\jalva12x\Documents\repos\trpl\restaurant\src\front_of_house\serving.rs C:\Users\jalva12x\Documents\repos\trpl\restaurant\src\front_of_house.rs C:\Users\jalva12x\Documents\repos\trpl\restaurant\src\lib.rs
