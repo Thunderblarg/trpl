@@ -3,12 +3,15 @@ use std::collections::HashMap;
 fn main() {
     // Given a list of integers, use a vector
     println!("Given a list of integers, use a vector:");
-    let mut v = vec![4, 6, 2, 9, 1, 7, 3, 5, 8, 2,
-                     0, 7, 5, 9, 3, 8, 1, 4, 6, 10,
-                     2, 5, 8, 3, 9, 7, 1, 4, 0, 6,
-                     10, 9, 2, 5, 8, 1, 3, 7, 4, 0,
-                     6, 10, 2, 5, 8, 3, 9, 7, 1, 4];
-    println!("vector:{:?}", v);
+    let mut v = vec![
+        3, 18, 7, 13, 6, 15, 10, 8, 4, 5,
+        1, 11, 0, 19, 16, 17, 19, 3, 12, 14,
+        9, 18, 5, 1, 14, 11, 7, 3, 2, 6,
+        17, 18, 20, 2, 9, 6, 14, 2, 12, 11,
+        7, 0, 19, 12, 9, 4, 10, 8, 16, 15
+    ];
+
+    println!("The vector we are using is as follows:\n{:?}", v);
 
     // And return the median when sorted (the value in the middle position)
     println!("And return the median when sorted (the value in the middle position)");
@@ -52,20 +55,24 @@ fn main() {
     if mode.is_empty() {
         println!("Something went wrong! How did we even get here??? :o");
     } else if mode.len() == 1 {
-        println!("The number that appears most frequently in the vector is {}", mode.get(&saved_key));
+        println!("The number that appears most frequently in the vector is {:#?}", mode.get(&saved_key));
     } else if mode.len() > 1 {
         // If multiple values have the same amount of the most occurences, spit them out as a tie
         let mut occ = String::new();
         let el = mode.len();
-        for (idx, (k, v)) in mode.iter().enumerate() {
-            occ.push("{}", k.to_string());
-            if index > el - 1 {
-                occ.push(",")
+        for (idx, (k, _v)) in mode.iter().enumerate() {
+            occ.push_str(&k.to_string());
+            if idx < el - 2 {
+                occ.push_str(", ");
+            } else if idx < el - 1 {
+                occ.push_str(", and ");
             }
         }
+        // println!("{:?}", mode.get(&saved_key)); //:>> Some(5)
+        if let Some(_i32) = mode.get(&saved_key) {
+            println!("The numbers {} are tied for the most occurrences with {} entries",
+                        occ,
+                        mode.get(&saved_key).unwrap());
+        }
     }
-
-
-
-
 }
