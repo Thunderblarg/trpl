@@ -6,14 +6,6 @@ fn main() {
     let mut sentence = String::new();
     stdin().read_line(&mut sentence).expect("Failed to read line");
 
-    println!("Eaten string: {}", sentence);
-
-    println!("Slice off the first letter: {}", &sentence[0..1]);
-
-    let testchar = &sentence[0..1];
-
-    println!("scope check: {}", testchar);
-
     let splits = &mut sentence.split_whitespace();
 
     let mut pig_latin = String::new();
@@ -36,3 +28,4 @@ fn main() {
     
     println!("{}", pig_latin);
 }
+
