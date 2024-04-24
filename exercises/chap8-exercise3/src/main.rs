@@ -13,7 +13,7 @@ fn main() {
 
         let mut input = input.split_whitespace();
         let arg1 = input.next();
-        if let Some(_String) = arg1 { // verb
+        if let Some(_string) = arg1 { // verb
             match arg1.unwrap() {
                 "exit"      => exit = true,         // exits us out, pretty self explanatory
                 "add"       => {                    // Adds a name to an existing department
@@ -23,7 +23,7 @@ fn main() {
                     }
 
                     let arg2 = input.next(); // name
-                    if let Some(_String) = arg2 {
+                    if let Some(_string) = arg2 {
                         // I hate doing this nesting shit, I really need to look into
                         // a better convention for this
                         let arg3 = input.next(); // anyways, to
@@ -33,10 +33,10 @@ fn main() {
                         } else {
                             // fuuuuUUUCK WHY
                             let arg4 = input.next(); // department
-                            if let Some(String) = arg4 {
+                            if let Some(_string) = arg4 {
                                 println!("arg4 = {}", arg4.unwrap());
                                 // TIL about get_mut, literally didn't even know this was a thing
-                                let mut some_department = departments.get_mut(arg4.unwrap()); 
+                                let some_department = departments.get_mut(arg4.unwrap()); 
                                 if let Some(employee_list) = some_department {
                                     println!("Good so far: 40");
                                     println!("arg2.unwrap() = {:?}", arg2.unwrap());
@@ -51,19 +51,11 @@ fn main() {
                     }
                 }
                 "create"    => { // this creates a new department
-                    let arg2 = input.next();
-                    if let Some(String) = arg2 {
-                        if departments.contains_key(arg2.unwrap()){
-                            println!("Department already exists!");
-                            continue;
-                        }
-                        let personnel: Vec<String> = Vec::new();
-                        departments.insert(String::from(arg2.unwrap()), personnel);
-                    }
+                    create_department(&mut departments, input.next());
                 }
                 "list"      => { // list all 
                     let arg2 = input.next();
-                    if let Some(_String) = arg2 {
+                    if let Some(_string) = arg2 {
                         if departments.contains_key(arg2.unwrap()) {
                             for person in &departments.get(arg2.unwrap()) {
                                 println!("{:?}", person);
@@ -71,7 +63,7 @@ fn main() {
                         }
                     } else {
                         for dept in &departments {
-                            println!("{:?}", departments)
+                            println!("{:?}", dept);
                         }
                     }
                 }
@@ -87,4 +79,19 @@ fn main() {
     }
 }
 
-fn add_department(dept: &mut HashMap<String, Vec<String>>, new_dept: String){}
+fn create_department(dept: &mut HashMap<String, Vec<String>>, new_dept: Option<&str>){
+    // let arg2 = input.next();
+
+
+    if let Some(_string) = new_dept {
+        if dept.contains_key(new_dept.unwrap()){
+            println!("Department already exists!");
+            // continue;
+        } else {
+            let personnel: Vec<String> = Vec::new();
+            dept.insert(String::from(new_dept.unwrap()), personnel);
+        }    
+    } else {
+        println!("Create what?");
+    }
+}
