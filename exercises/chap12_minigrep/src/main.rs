@@ -1,17 +1,24 @@
 use std::env;
-use std::fs;
+use std::process;
+use chap12_minigrep::Config;
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    
-    let query = &args[1];
-    let file_path = &args[2];
 
-    println!("Searching for {}", query);
-    println!("In file {}", file_path);
+    let config: Config = Config::build(&args).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
 
-    let contents = fs::read_to_string(file_path)
-        .expect("Should have been able to read the file");
+    println!("Searching for \"{}\"", config.query);
+    println!("In file {}", config.file_path);
 
-    println!("With Text:\n{contents}");
+    if let Err(e) = chap12_minigrep::run(config) {
+        eprintln!("Application error: {e}");
+        process::exit(1);
+    }    
 }
+
+
+
