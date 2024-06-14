@@ -1,5 +1,7 @@
+use rand;
+
 pub fn add(left: usize, right: usize) -> usize {
-    left + right
+    return left + right;
 }
 
 pub fn add_one(x: i32) -> i32 {
